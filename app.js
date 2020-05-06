@@ -35,8 +35,8 @@ const controller = new ScrollMagic.Controller();
 partnerBrandsIcon.forEach((icon) => {
   brandsTL.fromTo(
     icon,
-    0.5,
-    { x: -30, opacity: 0 },
+    0.4,
+    { x: -30, opacity: 0, ease: Bounce.out },
     { x: 0, opacity: 1, ease: Back.easeOut }
   );
 });
@@ -67,24 +67,16 @@ sectionTL
     { y: 0, opacity: 1, ease: Back.easeOut }
   );
 
-new ScrollMagic.Scene({
-  triggerElement: sections[1],
-  triggerHook: 0.5,
-})
-  .setTween(sectionTL)
-  .addTo(controller);
-new ScrollMagic.Scene({
-  triggerElement: sections[0],
-  triggerHook: 0.5,
-})
-  .setTween(mainSectionTL)
-  .addTo(controller);
+function scrollMagic(triggerElmnt, hook, tween) {
+  new ScrollMagic.Scene({
+    triggerElement: triggerElmnt,
+    triggerHook: hook,
+  })
+    .setTween(tween)
+    .addTo(controller);
+}
 
-new ScrollMagic.Scene({
-  triggerElement: partnerBrandsSection,
-  triggerHook: 0.5,
-})
-  .setTween(brandsTL)
-  .addTo(controller);
-
+scrollMagic(sections[0], 0.5, mainSectionTL);
+scrollMagic(sections[1], 0.5, sectionTL);
+scrollMagic(partnerBrandsSection, 0.5, brandsTL);
 menuButton.addEventListener("click", toggleMenu);
