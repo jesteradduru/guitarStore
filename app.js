@@ -23,6 +23,7 @@ function toggleMenu() {
 }
 // section body animation
 const sectionBodies = document.querySelectorAll(".section__body");
+const sectionImgs = document.querySelectorAll(".section__img");
 const sections = document.querySelectorAll(".section");
 const partnerBrandsSection = document.querySelector(".partner-brands");
 const partnerBrandsIcon = document.querySelectorAll(".brand__icon");
@@ -39,16 +40,23 @@ partnerBrandsIcon.forEach((icon) => {
   );
 });
 
-sectionTL.fromTo(
-  sectionBodies[1],
-  0.5,
-  { y: -50, opacity: 0 },
-  { y: 0, opacity: 1, ease: Back.easeOut }
-);
+sectionTL
+  .fromTo(
+    sectionImgs[1],
+    0.5,
+    { opacity: 0 },
+    { opacity: 1, ease: Back.easeOut }
+  )
+  .fromTo(
+    sectionBodies[1],
+    0.25,
+    { y: -50, opacity: 0 },
+    { y: 0, opacity: 1, ease: Back.easeOut }
+  );
 
 new ScrollMagic.Scene({
   triggerElement: sections[1],
-  triggerHook: 0.25,
+  triggerHook: 0.5,
 })
   .setTween(sectionTL)
   .addTo(controller);
