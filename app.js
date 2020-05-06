@@ -28,6 +28,7 @@ const sections = document.querySelectorAll(".section");
 const partnerBrandsSection = document.querySelector(".partner-brands");
 const partnerBrandsIcon = document.querySelectorAll(".brand__icon");
 const sectionTL = new TimelineMax();
+const mainSectionTL = new TimelineMax();
 const brandsTL = new TimelineMax();
 const controller = new ScrollMagic.Controller();
 
@@ -39,7 +40,19 @@ partnerBrandsIcon.forEach((icon) => {
     { x: 0, opacity: 1, ease: Back.easeOut }
   );
 });
-
+mainSectionTL
+  .fromTo(
+    sectionImgs[0],
+    0.5,
+    { opacity: 0 },
+    { opacity: 1, ease: Back.easeOut }
+  )
+  .fromTo(
+    sectionBodies[0],
+    0.25,
+    { y: -50, opacity: 0 },
+    { y: 0, opacity: 1, ease: Back.easeOut }
+  );
 sectionTL
   .fromTo(
     sectionImgs[1],
@@ -59,6 +72,12 @@ new ScrollMagic.Scene({
   triggerHook: 0.5,
 })
   .setTween(sectionTL)
+  .addTo(controller);
+new ScrollMagic.Scene({
+  triggerElement: sections[0],
+  triggerHook: 0.5,
+})
+  .setTween(mainSectionTL)
   .addTo(controller);
 
 new ScrollMagic.Scene({
