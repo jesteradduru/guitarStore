@@ -50,7 +50,7 @@ mainSectionTL
   .fromTo(
     sectionBodies[0],
     0.25,
-    { y: -50, opacity: 0 },
+    { y: 50, opacity: 0 },
     { y: 0, opacity: 1, ease: Back.easeOut }
   );
 sectionTL
@@ -63,7 +63,7 @@ sectionTL
   .fromTo(
     sectionBodies[1],
     0.25,
-    { y: -50, opacity: 0 },
+    { y: 50, opacity: 0 },
     { y: 0, opacity: 1, ease: Back.easeOut }
   );
 
